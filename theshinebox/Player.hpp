@@ -4,7 +4,7 @@
 
 constexpr float PLAYER_WIDTH = 52;
 constexpr float PLAYER_HEIGHT = 110;
-constexpr float PLAYER_WALK_SPEED = 0.5;
+constexpr float PLAYER_WALK_SPEED = 0.3;
 constexpr float GRAVITY = 0.001;
 
 class Player

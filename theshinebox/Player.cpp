@@ -13,6 +13,31 @@ Player::Player() :
 	sprite.setTexture(texture);
 }
 
+bool Player::getDead() const
+{
+	return dead;
+}
+
+float Player::getVerticalSpeed() const
+{
+	return verticalSpeed;
+}
+
+float Player::getHorizontalSpeed() const
+{
+	return horizontalSpeed;
+}
+
+float Player::getX() const
+{
+	return x;
+}
+
+float Player::getY() const
+{
+	return y;
+}
+
 void Player::draw(sf::RenderWindow& i_window) 
 {
 	sprite.setPosition(x - PLAYER_WIDTH / 2, y - PLAYER_HEIGHT / 2);
@@ -23,13 +48,21 @@ void Player::update()
 {
 	onGround = round(y + PLAYER_HEIGHT / 2) == 1000;
 
-	if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	if (1 == (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ^ sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
 	{
-		x -= PLAYER_WALK_SPEED;
+		if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			horizontalSpeed = -PLAYER_WALK_SPEED;
+		}
+		else if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			horizontalSpeed = PLAYER_WALK_SPEED;
+		}
+		else horizontalSpeed = 0;
 	}
-	if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	else if (0 == (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
 	{
-		x += PLAYER_WALK_SPEED;
+		horizontalSpeed = 0;
 	}
 
 	if (onGround == 0)
@@ -42,8 +75,9 @@ void Player::update()
 
 	if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && 1 == onGround)
 	{
-		verticalSpeed = -0.7;
+		verticalSpeed = -0.55;
 	}
 
+	x += horizontalSpeed;
 	y += verticalSpeed;
 }
