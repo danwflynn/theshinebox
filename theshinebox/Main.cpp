@@ -1,7 +1,9 @@
 #include <SFML/Graphics.hpp>
+#include "Player.hpp"
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Window");
+    sf::RenderWindow window(sf::VideoMode(1400, 1000), "SFML Window");
+    Player p1 = Player();
 
     while (window.isOpen()) {
         sf::Event event;
@@ -13,6 +15,8 @@ int main() {
 
         window.clear();
         // Draw your SFML graphics here
+        p1.draw(window);
+        p1.update();
         window.display();
     }
 

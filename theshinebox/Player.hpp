@@ -2,6 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 
+constexpr float PLAYER_WIDTH = 52;
+constexpr float PLAYER_HEIGHT = 110;
+constexpr float PLAYER_WALK_SPEED = 0.5;
+constexpr float GRAVITY = 0.001;
+
 class Player
 {
 	bool crouching;
@@ -17,6 +22,8 @@ class Player
 	sf::Texture texture;
 
 public:
+	Player();
+
 	bool getDead() const;
 	float getVerticalSpeed() const;
 	float getHorizontalSpeed() const;
@@ -24,5 +31,5 @@ public:
 	float getY() const;
 
 	void draw(sf::RenderWindow& i_window);
-
+	void update();
 };
