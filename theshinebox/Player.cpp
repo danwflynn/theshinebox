@@ -12,7 +12,7 @@ void Player::handleInput()
 		{
 			moveRight();
 		}
-		else horizontalSpeed = 0;
+		else stopMoving();
 	}
 	else if (0 == (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
 	{
