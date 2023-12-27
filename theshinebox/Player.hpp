@@ -6,9 +6,11 @@ constexpr float PLAYER_WIDTH = 52;
 constexpr float PLAYER_HEIGHT = 110;
 constexpr float PLAYER_WALK_SPEED = 0.3;
 constexpr float GRAVITY = 0.001;
-constexpr float STARTING_JUMP_VELOCITY = -0.55;
+constexpr float SHORT_JUMP_VELOCITY = -0.45;
+constexpr float JUMP_VELOCITY = -0.65;
 constexpr float HORIZONTAL_ACCELERATION = 0.001;
-constexpr unsigned char JUMP_TIMER = 8;
+
+constexpr unsigned char JUMP_TIMER_MAX = 240;
 
 class Player
 {
@@ -21,7 +23,8 @@ class Player
 	float x;
 	float y;
 
-	unsigned char jumpTimer;
+	unsigned char jumpDuration;
+	unsigned char prevJumpDur;
 
 	sf::Sprite sprite;
 	sf::Texture texture;
@@ -31,6 +34,7 @@ class Player
 	void moveRight();
 	void stopMoving();
 	void jump();
+	void shortJump();
 
 public:
 	Player();
