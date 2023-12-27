@@ -1,4 +1,6 @@
 #include "Player.hpp"
+#include <cstdlib>
+#include <iostream>
 
 void Player::handleInput()
 {
@@ -51,11 +53,18 @@ void Player::moveRight()
 
 void Player::stopMoving()
 {
-	if (horizontalSpeed > 0) {
-		horizontalSpeed -= HORIZONTAL_ACCELERATION;
+	if (abs(horizontalSpeed) > 1e-08)
+	{
+		if (horizontalSpeed > 0) {
+			horizontalSpeed -= HORIZONTAL_ACCELERATION;
+		}
+		else if (horizontalSpeed < 0) {
+			horizontalSpeed += HORIZONTAL_ACCELERATION;
+		}
 	}
-	else if (horizontalSpeed < 0) {
-		horizontalSpeed += HORIZONTAL_ACCELERATION;
+	else
+	{
+		horizontalSpeed = 0;
 	}
 }
 
@@ -110,4 +119,5 @@ void Player::update()
 
 	x += horizontalSpeed;
 	y += verticalSpeed;
+	//std::cout << horizontalSpeed << std::endl;
 }

@@ -10,7 +10,7 @@ constexpr float SHORT_JUMP_VELOCITY = -0.45;
 constexpr float JUMP_VELOCITY = -0.65;
 constexpr float HORIZONTAL_ACCELERATION = 0.001;
 
-constexpr unsigned char JUMP_TIMER_MAX = 240;
+constexpr unsigned char JUMP_TIMER_MAX = 180;
 
 class Player
 {
