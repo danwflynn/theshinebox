@@ -79,18 +79,19 @@ void Player::shortJump()
 	jumpDuration = 0;
 }
 
-Player::Player() :
+Player::Player(float x, float y) :
 	crouching(0),
 	dead(0),
 	onGround(0),
 	verticalSpeed(0),
 	horizontalSpeed(0),
-	x(400),
-	y(300),
+	x(x),
+	y(y),
 	jumpDuration(1),
 	prevJumpDur(0)
 {
-	texture.loadFromFile("mario.png");
+	texture.loadFromFile("msuit.png");
+	jumpTexture.loadFromFile("msuitjump.png");
 	sprite.setTexture(texture);
 	sprite.setOrigin(PLAYER_WIDTH / 2, PLAYER_HEIGHT / 2);
 }
@@ -119,4 +120,12 @@ void Player::update()
 
 	x += horizontalSpeed;
 	y += verticalSpeed;
+	if (abs(verticalSpeed) > 1e-08)
+	{
+		sprite.setTexture(jumpTexture);
+	}
+	else
+	{
+		sprite.setTexture(texture);
+	}
 }

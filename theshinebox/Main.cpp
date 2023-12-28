@@ -3,7 +3,7 @@
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1400, 1000), "SFML Window");
-    Player p1 = Player();
+    Player p1 = Player(400, 300);
 
     while (window.isOpen()) {
         sf::Event event;

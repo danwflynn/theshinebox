@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 constexpr float PLAYER_WIDTH = 52;
-constexpr float PLAYER_HEIGHT = 110;
+constexpr float PLAYER_HEIGHT = 124;
 constexpr float PLAYER_WALK_SPEED = 0.3;
 constexpr float GRAVITY = 0.001;
 constexpr float SHORT_JUMP_VELOCITY = -0.45;
@@ -28,6 +28,7 @@ class Player
 
 	sf::Sprite sprite;
 	sf::Texture texture;
+	sf::Texture jumpTexture;
 
 	void handleInput();
 	void moveLeft();
@@ -37,7 +38,7 @@ class Player
 	void shortJump();
 
 public:
-	Player();
+	Player(float x, float y);
 
 	void draw(sf::RenderWindow& i_window);
 	void update();
