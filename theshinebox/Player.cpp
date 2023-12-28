@@ -52,7 +52,7 @@ void Player::moveRight()
 
 void Player::stopMoving()
 {
-	if (abs(horizontalSpeed) > 1e-08)
+	if (abs(horizontalSpeed) > 1e-08f)
 	{
 		if (horizontalSpeed > 0) {
 			horizontalSpeed -= HORIZONTAL_ACCELERATION;
@@ -129,7 +129,7 @@ void Player::update()
 
 	x += horizontalSpeed;
 	y += verticalSpeed;
-	if (abs(verticalSpeed) > 1e-08 && verticalSpeed < 0.1)
+	if (abs(verticalSpeed) > 1e-08f && verticalSpeed < 0.1f)
 	{
 		sprite.setTexture(jumpTexture);
 	}

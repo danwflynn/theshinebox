@@ -4,11 +4,11 @@
 
 constexpr float PLAYER_WIDTH = 52;
 constexpr float PLAYER_HEIGHT = 124;
-constexpr float PLAYER_WALK_SPEED = 0.3;
-constexpr float GRAVITY = 0.001;
-constexpr float SHORT_JUMP_VELOCITY = -0.45;
-constexpr float JUMP_VELOCITY = -0.65;
-constexpr float HORIZONTAL_ACCELERATION = 0.001;
+constexpr float PLAYER_WALK_SPEED = 0.3f;
+constexpr float GRAVITY = 0.001f;
+constexpr float SHORT_JUMP_VELOCITY = -0.45f;
+constexpr float JUMP_VELOCITY = -0.65f;
+constexpr float HORIZONTAL_ACCELERATION = 0.001f;
 
 constexpr unsigned char JUMP_TIMER_MAX = 180;
 
