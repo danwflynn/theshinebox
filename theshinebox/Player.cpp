@@ -1,6 +1,5 @@
 #include "Player.hpp"
 #include <cstdlib>
-#include <iostream>
 
 void Player::handleInput()
 {
@@ -8,10 +7,12 @@ void Player::handleInput()
 	{
 		if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
+			if (onGround) sprite.setScale(-1.f, 1.f);
 			moveLeft();
 		}
 		else if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
+			if (onGround) sprite.setScale(1.f, 1.f);
 			moveRight();
 		}
 		else stopMoving();
@@ -41,14 +42,12 @@ void Player::handleInput()
 
 void Player::moveLeft()
 {
-	if (horizontalSpeed > -PLAYER_WALK_SPEED)
-	horizontalSpeed -= HORIZONTAL_ACCELERATION;
+	if (horizontalSpeed > -PLAYER_WALK_SPEED) horizontalSpeed -= HORIZONTAL_ACCELERATION;
 }
 
 void Player::moveRight()
 {
-	if (horizontalSpeed < PLAYER_WALK_SPEED)
-		horizontalSpeed += HORIZONTAL_ACCELERATION;
+	if (horizontalSpeed < PLAYER_WALK_SPEED) horizontalSpeed += HORIZONTAL_ACCELERATION;
 }
 
 void Player::stopMoving()
@@ -93,12 +92,13 @@ Player::Player() :
 {
 	texture.loadFromFile("mario.png");
 	sprite.setTexture(texture);
+	sprite.setOrigin(PLAYER_WIDTH / 2, PLAYER_HEIGHT / 2);
 }
 
-void Player::draw(sf::RenderWindow& i_window) 
+void Player::draw(sf::RenderWindow& window) 
 {
-	sprite.setPosition(x - PLAYER_WIDTH / 2, y - PLAYER_HEIGHT / 2);
-	i_window.draw(sprite);
+	sprite.setPosition(x, y);
+	window.draw(sprite);
 }
 
 void Player::update() 
@@ -119,5 +119,4 @@ void Player::update()
 
 	x += horizontalSpeed;
 	y += verticalSpeed;
-	//std::cout << horizontalSpeed << std::endl;
 }
