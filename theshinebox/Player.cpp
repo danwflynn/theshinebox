@@ -92,6 +92,7 @@ Player::Player(float x, float y) :
 {
 	texture.loadFromFile("msuit.png");
 	jumpTexture.loadFromFile("msuitjump.png");
+	prejumpTexture.loadFromFile("msuitprejump.png");
 	sprite.setTexture(texture);
 	sprite.setOrigin(PLAYER_WIDTH / 2, PLAYER_HEIGHT / 2);
 }
@@ -117,14 +118,22 @@ void Player::update()
 
 	handleInput();
 
+	if (jumpDuration > 0 && verticalSpeed == 0)
+	{
+		sprite.setTexture(prejumpTexture);
+	}
+	else
+	{
+		sprite.setTexture(texture);
+	}
 
 	x += horizontalSpeed;
 	y += verticalSpeed;
-	if (abs(verticalSpeed) > 1e-08)
+	if (abs(verticalSpeed) > 1e-08 && verticalSpeed < 0.1)
 	{
 		sprite.setTexture(jumpTexture);
 	}
-	else
+	else if (jumpDuration == 0)
 	{
 		sprite.setTexture(texture);
 	}

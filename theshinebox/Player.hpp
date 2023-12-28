@@ -29,6 +29,7 @@ class Player
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::Texture jumpTexture;
+	sf::Texture prejumpTexture;
 
 	void handleInput();
 	void moveLeft();
