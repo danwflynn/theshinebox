@@ -1,4 +1,6 @@
 #include "Player.hpp"
+#include <cstdlib>
+#include <iostream>
 
 void Player::handleInput()
 {
@@ -18,8 +20,20 @@ void Player::handleInput()
 	{
 		stopMoving();
 	}
+	
+	prevJumpDur = jumpDuration;
 
-	if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && 1 == onGround)
+	if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && verticalSpeed == 0)
+	{
+		if (jumpDuration < JUMP_TIMER_MAX) jumpDuration++;
+	}
+
+	if (jumpDuration != 0 && 1 == onGround && jumpDuration == prevJumpDur)
+	{
+		shortJump();
+	}
+	
+	if (jumpDuration == JUMP_TIMER_MAX && 1 == onGround)
 	{
 		jump();
 	}
@@ -39,17 +53,31 @@ void Player::moveRight()
 
 void Player::stopMoving()
 {
-	if (horizontalSpeed > 0) {
-		horizontalSpeed -= HORIZONTAL_ACCELERATION;
+	if (abs(horizontalSpeed) > 1e-08)
+	{
+		if (horizontalSpeed > 0) {
+			horizontalSpeed -= HORIZONTAL_ACCELERATION;
+		}
+		else if (horizontalSpeed < 0) {
+			horizontalSpeed += HORIZONTAL_ACCELERATION;
+		}
 	}
-	else if (horizontalSpeed < 0) {
-		horizontalSpeed += HORIZONTAL_ACCELERATION;
+	else
+	{
+		horizontalSpeed = 0;
 	}
 }
 
 void Player::jump()
 {
-	verticalSpeed = STARTING_JUMP_VELOCITY;
+	verticalSpeed = JUMP_VELOCITY;
+	jumpDuration = 0;
+}
+
+void Player::shortJump()
+{
+	verticalSpeed = SHORT_JUMP_VELOCITY;
+	jumpDuration = 0;
 }
 
 Player::Player() :
@@ -60,7 +88,8 @@ Player::Player() :
 	horizontalSpeed(0),
 	x(400),
 	y(300),
-	jumpTimer(0)
+	jumpDuration(1),
+	prevJumpDur(0)
 {
 	texture.loadFromFile("mario.png");
 	sprite.setTexture(texture);
@@ -74,7 +103,7 @@ void Player::draw(sf::RenderWindow& i_window)
 
 void Player::update() 
 {
-	onGround = round(y + PLAYER_HEIGHT / 2) == 1000;
+	onGround = y + PLAYER_HEIGHT / 2 > 999;
 
 	if (onGround == 0)
 	{
@@ -90,4 +119,5 @@ void Player::update()
 
 	x += horizontalSpeed;
 	y += verticalSpeed;
+	//std::cout << horizontalSpeed << std::endl;
 }
