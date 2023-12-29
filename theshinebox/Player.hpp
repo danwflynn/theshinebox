@@ -30,8 +30,10 @@ class Player
 	sf::Texture texture;
 	sf::Texture jumpTexture;
 	sf::Texture prejumpTexture;
+	sf::Texture crouchTexture;
 
 	void handleInput();
+	void handleSprites();
 	void moveLeft();
 	void moveRight();
 	void stopMoving();

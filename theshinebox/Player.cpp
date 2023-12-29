@@ -3,7 +3,16 @@
 
 void Player::handleInput()
 {
-	if (1 == (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ^ sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
+	if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && onGround && 0 == horizontalSpeed)
+	{
+		crouching = 1;
+	}
+	else
+	{
+		crouching = 0;
+	}
+
+	if ((1 == (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ^ sf::Keyboard::isKeyPressed(sf::Keyboard::Right))) && 0 == sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
@@ -38,6 +47,29 @@ void Player::handleInput()
 	{
 		jump();
 	}
+}
+
+void Player::handleSprites()
+{
+	if (jumpDuration > 0 && verticalSpeed == 0)
+	{
+		sprite.setTexture(prejumpTexture);
+	}
+	else
+	{
+		sprite.setTexture(texture);
+	}
+
+	if (abs(verticalSpeed) > 1e-08f && verticalSpeed < 0.1f)
+	{
+		sprite.setTexture(jumpTexture);
+	}
+	else if (jumpDuration == 0)
+	{
+		sprite.setTexture(texture);
+	}
+
+	if (crouching) sprite.setTexture(crouchTexture);
 }
 
 void Player::moveLeft()
@@ -93,6 +125,7 @@ Player::Player(float x, float y) :
 	texture.loadFromFile("msuit.png");
 	jumpTexture.loadFromFile("msuitjump.png");
 	prejumpTexture.loadFromFile("msuitprejump.png");
+	crouchTexture.loadFromFile("msuitcrouch.png");
 	sprite.setTexture(texture);
 	sprite.setOrigin(PLAYER_WIDTH / 2, PLAYER_HEIGHT / 2);
 }
@@ -118,23 +151,8 @@ void Player::update()
 
 	handleInput();
 
-	if (jumpDuration > 0 && verticalSpeed == 0)
-	{
-		sprite.setTexture(prejumpTexture);
-	}
-	else
-	{
-		sprite.setTexture(texture);
-	}
-
 	x += horizontalSpeed;
 	y += verticalSpeed;
-	if (abs(verticalSpeed) > 1e-08f && verticalSpeed < 0.1f)
-	{
-		sprite.setTexture(jumpTexture);
-	}
-	else if (jumpDuration == 0)
-	{
-		sprite.setTexture(texture);
-	}
+
+	handleSprites();
 }
