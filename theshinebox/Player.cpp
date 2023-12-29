@@ -26,7 +26,7 @@ void Player::handleInput()
 		}
 		else stopMoving();
 	}
-	else if (0 == (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
+	else if (0 == (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) || 1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		stopMoving();
 	}
@@ -46,6 +46,12 @@ void Player::handleInput()
 	if (jumpDuration == JUMP_TIMER_MAX && 1 == onGround)
 	{
 		jump();
+	}
+
+	if (crouching && (1 == (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ^ sf::Keyboard::isKeyPressed(sf::Keyboard::Right))))
+	{
+		if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) sprite.setScale(-1.f, 1.f);
+		if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) sprite.setScale(1.f, 1.f);
 	}
 }
 
