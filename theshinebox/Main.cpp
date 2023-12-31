@@ -13,7 +13,7 @@ int main() {
             }
         }
 
-        window.clear();
+        window.clear(sf::Color(135, 206, 235));
         // Draw your SFML graphics here
         p1.draw(window);
         p1.update();

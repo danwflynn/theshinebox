@@ -25,12 +25,14 @@ class Player
 
 	unsigned char jumpDuration;
 	unsigned char prevJumpDur;
+	unsigned short walkTimer;
 
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::Texture jumpTexture;
 	sf::Texture prejumpTexture;
 	sf::Texture crouchTexture;
+	sf::Texture walkTextures[6];
 
 	void handleInput();
 	void handleSprites();

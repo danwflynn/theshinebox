@@ -75,6 +75,23 @@ void Player::handleSprites()
 		sprite.setTexture(texture);
 	}
 
+	if (horizontalSpeed != 0 && onGround)
+	{
+		sprite.setTexture(walkTextures[walkTimer / 125]);
+		if (walkTimer < 748)
+		{
+			walkTimer++;
+		}
+		else
+		{
+			walkTimer = 0;
+		}
+	}
+	else
+	{
+		walkTimer = 0;
+	}
+
 	if (crouching) sprite.setTexture(crouchTexture);
 }
 
@@ -126,12 +143,17 @@ Player::Player(float x, float y) :
 	x(x),
 	y(y),
 	jumpDuration(1),
-	prevJumpDur(0)
+	prevJumpDur(0),
+	walkTimer(0)
 {
 	texture.loadFromFile("msuit.png");
 	jumpTexture.loadFromFile("msuitjump.png");
 	prejumpTexture.loadFromFile("msuitprejump.png");
 	crouchTexture.loadFromFile("msuitcrouch.png");
+	for (int i = 0; i <= 5; ++i) {
+		walkTextures[i].loadFromFile("msuitwalk" + std::to_string(i + 1) + ".png");
+	}
+
 	sprite.setTexture(texture);
 	sprite.setOrigin(PLAYER_WIDTH / 2, PLAYER_HEIGHT / 2);
 }
