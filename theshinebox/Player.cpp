@@ -77,8 +77,8 @@ void Player::handleSprites()
 
 	if (horizontalSpeed != 0 && onGround)
 	{
-		sprite.setTexture(walkTextures[walkTimer / 125]);
-		if (walkTimer < 748)
+		sprite.setTexture(walkTextures[walkTimer / LOOPS_PER_ANIMATION_FRAME]);
+		if (walkTimer < (6 * LOOPS_PER_ANIMATION_FRAME) - 2)
 		{
 			walkTimer++;
 		}

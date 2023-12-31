@@ -11,6 +11,7 @@ constexpr float JUMP_VELOCITY = -0.65f;
 constexpr float HORIZONTAL_ACCELERATION = 0.001f;
 
 constexpr unsigned char JUMP_TIMER_MAX = 180;
+constexpr unsigned short LOOPS_PER_ANIMATION_FRAME = 125;
 
 class Player
 {
