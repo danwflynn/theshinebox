@@ -3,7 +3,8 @@
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1400, 1000), "SFML Window");
-    Player p1 = Player(400, 300);
+    Map map;
+    Player p1 = Player(400, 850, &map);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -13,9 +14,10 @@ int main() {
             }
         }
 
-        window.clear(sf::Color(135, 206, 235));
+        window.clear(sf::Color(9, 28, 59));
         // Draw your SFML graphics here
         p1.draw(window);
+        map.draw(window);
         p1.update();
         window.display();
     }

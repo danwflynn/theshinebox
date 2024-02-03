@@ -134,7 +134,7 @@ void Player::shortJump()
 	jumpDuration = 0;
 }
 
-Player::Player(float x, float y) :
+Player::Player(float x, float y, Map* map) :
 	crouching(0),
 	dead(0),
 	onGround(0),
@@ -144,7 +144,8 @@ Player::Player(float x, float y) :
 	y(y),
 	jumpDuration(1),
 	prevJumpDur(0),
-	walkTimer(0)
+	walkTimer(0),
+	map(map)
 {
 	texture.loadFromFile("msuit.png");
 	jumpTexture.loadFromFile("msuitjump.png");
@@ -166,7 +167,7 @@ void Player::draw(sf::RenderWindow& window)
 
 void Player::update() 
 {
-	onGround = y + PLAYER_HEIGHT / 2 > 999;
+	onGround = y + PLAYER_HEIGHT / 2 > 999 || map->touchingGround(x - PLAYER_WIDTH / 2, x + PLAYER_WIDTH / 2, y + PLAYER_HEIGHT / 2);
 
 	if (onGround == 0)
 	{

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Map.hpp"
 
 constexpr float PLAYER_WIDTH = 52;
 constexpr float PLAYER_HEIGHT = 124;
@@ -28,6 +29,8 @@ class Player
 	unsigned char prevJumpDur;
 	unsigned short walkTimer;
 
+	Map* map;
+
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::Texture jumpTexture;
@@ -44,8 +47,8 @@ class Player
 	void shortJump();
 
 public:
-	Player(float x, float y);
+	Player(float x, float y, Map* map);
 
-	void draw(sf::RenderWindow& i_window);
+	void draw(sf::RenderWindow& window);
 	void update();
 };
