@@ -14,6 +14,6 @@ class Platform
 
 public:
 	Platform(float xLeft, float xRight, float yTop);
-	bool touchingGround(float xLeft, float xRight, float yBottom);
+	bool touchingGround(float xLeft, float xRight, float yBottom, float verticalSpeed);
 	void draw(sf::RenderWindow& window);
 };

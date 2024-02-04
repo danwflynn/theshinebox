@@ -1,9 +1,9 @@
 #include "MapPieces.hpp"
 #include <cstdlib>
 
-bool Platform::touchingGround(float xL, float xR, float yB)
+bool Platform::touchingGround(float xL, float xR, float yB, float verticalSpeed)
 {
-	return ((xL >= xLeft && xL <= xRight) || (xR >= xLeft && xR <= xRight)) && abs(yB - yTop) < 1e-08f;
+	return ((xL >= xLeft && xL <= xRight) || (xR >= xLeft && xR <= xRight)) && abs(yB - yTop) < 0.5f && verticalSpeed >= 0;
 }
 
 void Platform::draw(sf::RenderWindow& window)

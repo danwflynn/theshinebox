@@ -11,7 +11,7 @@ class Map
 
 public:
 	Map();
-	bool touchingGround(float xLeft, float xRight, float yBottom);
+	bool touchingGround(float xLeft, float xRight, float yBottom, float verticalSpeed);
 	bool touchingWall(float xLeft, float xRight, float yTop, float yBottom);
 	void draw(sf::RenderWindow& window);
 };

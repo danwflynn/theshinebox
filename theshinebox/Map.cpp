@@ -11,10 +11,10 @@ Map::Map()
 	this->platforms.push_back(plat1);
 }
 
-bool Map::touchingGround(float xLeft, float xRight, float yBottom)
+bool Map::touchingGround(float xLeft, float xRight, float yBottom, float verticalSpeed)
 {
 	for (Platform platform : this->platforms) {
-		if (platform.touchingGround(xLeft, xRight, yBottom)) return true;
+		if (platform.touchingGround(xLeft, xRight, yBottom, verticalSpeed)) return true;
 	}
 	return yBottom >= this->baseGround.getPosition().y;
 }
