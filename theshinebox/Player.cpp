@@ -169,7 +169,7 @@ void Player::update()
 {
 	onGround = y + PLAYER_HEIGHT / 2 > 999 || map->touchingGround(x - PLAYER_WIDTH / 2 + 8, x + PLAYER_WIDTH / 2 - 8, y + PLAYER_HEIGHT / 2, verticalSpeed);
 
-	if (onGround == 0)
+	if (onGround == 0 && !map->touchingCeiling(x - PLAYER_WIDTH / 2 + 8, x + PLAYER_WIDTH / 2 - 8, y - PLAYER_HEIGHT / 2, verticalSpeed))
 	{
 		verticalSpeed += GRAVITY;
 	}
