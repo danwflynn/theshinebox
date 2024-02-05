@@ -54,13 +54,17 @@ bool Map::touchingRightWall(float xLeft, float yTop, float yBottom, float horizo
 	return false;
 }
 
-void Map::draw(sf::RenderWindow& window)
+void Map::draw_backside(sf::RenderWindow& window)
 {
 	window.draw(this->baseGround);
-	for (Platform platform : this->platforms) {
-		platform.draw(window);
-	}
 	for (MapBlock block : this->blocks) {
 		block.draw(window);
+	}
+}
+
+void Map::draw_frontside(sf::RenderWindow& window)
+{
+	for (Platform platform : this->platforms) {
+		platform.draw(window);
 	}
 }

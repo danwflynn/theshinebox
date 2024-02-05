@@ -16,8 +16,9 @@ int main() {
 
         window.clear(sf::Color(9, 28, 59));
         // Draw your SFML graphics here
+        map.draw_backside(window);
         p1.draw(window);
-        map.draw(window);
+        map.draw_frontside(window);
         p1.update();
         window.display();
     }

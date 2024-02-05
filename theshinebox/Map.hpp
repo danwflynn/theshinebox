@@ -16,5 +16,6 @@ public:
 	bool touchingCeiling(float xLeft, float xRight, float yTop, float verticalSpeed);
 	bool touchingLeftWall(float xRight, float yTop, float yBottom, float horizontalSpeed);
 	bool touchingRightWall(float xLeft, float yTop, float yBottom, float horizontalSpeed);
-	void draw(sf::RenderWindow& window);
+	void draw_backside(sf::RenderWindow& window);
+	void draw_frontside(sf::RenderWindow& window);
 };
