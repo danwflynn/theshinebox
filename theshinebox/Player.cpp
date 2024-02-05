@@ -180,6 +180,9 @@ void Player::update()
 
 	handleInput();
 
+	if (map->touchingLeftWall(x + PLAYER_WIDTH / 2, y - PLAYER_HEIGHT / 2, y + PLAYER_HEIGHT / 2, horizontalSpeed)) horizontalSpeed = 0;
+	if (map->touchingRightWall(x - PLAYER_WIDTH / 2, y - PLAYER_HEIGHT / 2, y + PLAYER_HEIGHT / 2, horizontalSpeed)) horizontalSpeed = 0;
+
 	x += horizontalSpeed;
 	y += verticalSpeed;
 

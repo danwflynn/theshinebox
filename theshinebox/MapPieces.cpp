@@ -32,14 +32,14 @@ bool MapBlock::touchingCeiling(float xL, float xR, float yT, float verticalSpeed
 	return ((xL >= xLeft && xL <= xRight) || (xR >= xLeft && xR <= xRight)) && abs(yT - yBottom) < 0.5f && verticalSpeed < 0;
 }
 
-bool MapBlock::touchingLeftWall(float xRight, float yTop, float yBottom, float horizontalSpeed)
+bool MapBlock::touchingLeftWall(float xR, float yT, float yB, float horizontalSpeed)
 {
-	return false;
+	return ((yT >= yTop && yT <= yBottom) || (yB >= yTop && yB <= yBottom) || (yTop >= yT && yTop <= yB) || (yBottom >= yT && yBottom <= yB)) && abs(xR - xLeft) < 0.5f && horizontalSpeed >= 0;
 }
 
-bool MapBlock::touchingRightWall(float xLeft, float yTop, float yBottom, float horizontalSpeed)
+bool MapBlock::touchingRightWall(float xL, float yT, float yB, float horizontalSpeed)
 {
-	return false;
+	return ((yT >= yTop && yT <= yBottom) || (yB >= yTop && yB <= yBottom) || (yTop >= yT && yTop <= yB) || (yBottom >= yT && yBottom <= yB)) && abs(xL - xRight) < 0.5f && horizontalSpeed <= 0;
 }
 
 void MapBlock::draw(sf::RenderWindow& window)
