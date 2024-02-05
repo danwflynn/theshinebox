@@ -167,9 +167,9 @@ void Player::draw(sf::RenderWindow& window)
 
 void Player::update() 
 {
-	onGround = y + PLAYER_HEIGHT / 2 > 999 || map->touchingGround(x - PLAYER_WIDTH / 2 + 8, x + PLAYER_WIDTH / 2 - 8, y + PLAYER_HEIGHT / 2, verticalSpeed);
+	onGround = y + PLAYER_HEIGHT / 2 > 999 || map->touchingGround(x - PLAYER_WIDTH / 2 + HORIZONTAL_HITBOX_BUFFER, x + PLAYER_WIDTH / 2 - HORIZONTAL_HITBOX_BUFFER, y + PLAYER_HEIGHT / 2, verticalSpeed);
 
-	if (onGround == 0 && !map->touchingCeiling(x - PLAYER_WIDTH / 2 + 8, x + PLAYER_WIDTH / 2 - 8, y - PLAYER_HEIGHT / 2, verticalSpeed))
+	if (onGround == 0 && !map->touchingCeiling(x - PLAYER_WIDTH / 2 + HORIZONTAL_HITBOX_BUFFER, x + PLAYER_WIDTH / 2 - HORIZONTAL_HITBOX_BUFFER, y - PLAYER_HEIGHT / 2, verticalSpeed))
 	{
 		verticalSpeed += GRAVITY;
 	}
@@ -180,8 +180,8 @@ void Player::update()
 
 	handleInput();
 
-	if (map->touchingLeftWall(x + PLAYER_WIDTH / 2, y - PLAYER_HEIGHT / 2, y + PLAYER_HEIGHT / 2, horizontalSpeed)) horizontalSpeed = 0;
-	if (map->touchingRightWall(x - PLAYER_WIDTH / 2, y - PLAYER_HEIGHT / 2, y + PLAYER_HEIGHT / 2, horizontalSpeed)) horizontalSpeed = 0;
+	if (map->touchingLeftWall(x + PLAYER_WIDTH / 2 - HORIZONTAL_HITBOX_BUFFER, y - PLAYER_HEIGHT / 2, y + PLAYER_HEIGHT / 2, horizontalSpeed)) horizontalSpeed = 0;
+	if (map->touchingRightWall(x - PLAYER_WIDTH / 2 + HORIZONTAL_HITBOX_BUFFER, y - PLAYER_HEIGHT / 2, y + PLAYER_HEIGHT / 2, horizontalSpeed)) horizontalSpeed = 0;
 
 	x += horizontalSpeed;
 	y += verticalSpeed;

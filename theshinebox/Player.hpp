@@ -10,6 +10,7 @@ constexpr float GRAVITY = 0.001f;
 constexpr float SHORT_JUMP_VELOCITY = -0.45f;
 constexpr float JUMP_VELOCITY = -0.65f;
 constexpr float HORIZONTAL_ACCELERATION = 0.001f;
+constexpr float HORIZONTAL_HITBOX_BUFFER = 4;
 
 constexpr unsigned char JUMP_TIMER_MAX = 180;
 constexpr unsigned short LOOPS_PER_ANIMATION_FRAME = 150;

@@ -14,7 +14,9 @@ Map::Map()
 	this->platforms.push_back(Platform(1200, 1275, 760));
 
 	this->blocks.push_back(MapBlock(sf::Vector2f(1100, 600), 100, 320));
+	this->blocks.push_back(MapBlock(sf::Vector2f(400, 200), 400, 100));
 	this->blocks.push_back(MapBlock(sf::Vector2f(100, 840), 100, 40));
+	this->blocks.push_back(MapBlock(sf::Vector2f(140, 640), 20, 40));
 }
 
 bool Map::touchingGround(float xLeft, float xRight, float yBottom, float verticalSpeed)
