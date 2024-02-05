@@ -14,8 +14,7 @@ void Platform::draw(sf::RenderWindow& window)
 Platform::Platform(float xLeft, float xRight, float yTop) :
 	xLeft(xLeft),
 	xRight(xRight),
-	yTop(yTop),
-	yBottom(yTop + PLATFORM_HEIGHT)
+	yTop(yTop)
 {
 	sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(xRight - xLeft, PLATFORM_HEIGHT));
 	shape.setPosition(xLeft, yTop);

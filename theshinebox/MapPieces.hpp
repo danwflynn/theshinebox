@@ -10,7 +10,6 @@ class Platform
 	float xLeft;
 	float xRight;
 	float yTop;
-	float yBottom;
 
 public:
 	Platform(float xLeft, float xRight, float yTop);
