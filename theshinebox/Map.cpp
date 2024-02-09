@@ -1,8 +1,9 @@
 #include "Map.hpp"
+#include <cstdlib>
 
 Map::Map()
 {
-	sf::RectangleShape bg = sf::RectangleShape(sf::Vector2f(1400, 80));
+	sf::RectangleShape bg = sf::RectangleShape(sf::Vector2f(2000, 80));
 	bg.setPosition(0, 920);
 	bg.setFillColor(sf::Color(179, 142, 32));
 	this->baseGround = bg;
@@ -27,7 +28,7 @@ bool Map::touchingGround(float xLeft, float xRight, float yBottom, float vertica
 	for (MapBlock block : this->blocks) {
 		if (block.touchingGround(xLeft, xRight, yBottom, verticalSpeed)) return true;
 	}
-	return yBottom >= this->baseGround.getPosition().y;
+	return abs(yBottom - this->baseGround.getPosition().y) < 0.5f && verticalSpeed >= 0;
 }
 
 bool Map::touchingCeiling(float xLeft, float xRight, float yTop, float verticalSpeed)

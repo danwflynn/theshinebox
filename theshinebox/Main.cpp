@@ -22,7 +22,7 @@ int main() {
         p1.draw(window);
         map.draw_frontside(window);
         p1.update();
-        camera.update(sf::Vector2f(p1.x, p1.y));
+        camera.update(p1.x, p1.y);
         window.display();
     }
 

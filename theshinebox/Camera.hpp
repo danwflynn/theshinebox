@@ -2,11 +2,13 @@
 
 #include <SFML/Graphics.hpp>
 
+//define constants for window dimensions
+
 class Camera 
 {
 public:
 	Camera(sf::RenderWindow& window);
-	void update(sf::Vector2f targetPosition);
+	void update(float x, float y);
 
 private:
 	sf::RenderWindow& window;
