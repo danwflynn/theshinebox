@@ -51,7 +51,7 @@ bool Map::touchingRightWall(float xLeft, float yTop, float yBottom, float horizo
 	for (MapBlock block : this->blocks) {
 		if (block.touchingRightWall(xLeft, yTop, yBottom, horizontalSpeed)) return true;
 	}
-	return false;
+	return xLeft <= 0 && horizontalSpeed <= 0;
 }
 
 void Map::draw_backside(sf::RenderWindow& window)
