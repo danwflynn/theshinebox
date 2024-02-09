@@ -1,8 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include "Player.hpp"
+#include "Camera.hpp"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1400, 1000), "SFML Window");
+    Camera camera(window);
     Map map;
     Player p1 = Player(400, 850, &map);
 
@@ -20,6 +22,7 @@ int main() {
         p1.draw(window);
         map.draw_frontside(window);
         p1.update();
+        camera.update(sf::Vector2f(p1.x, p1.y));
         window.display();
     }
 

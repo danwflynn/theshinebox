@@ -23,8 +23,6 @@ class Player
 
 	float verticalSpeed;
 	float horizontalSpeed;
-	float x;
-	float y;
 
 	unsigned char jumpDuration;
 	unsigned char prevJumpDur;
@@ -48,6 +46,9 @@ class Player
 	void shortJump();
 
 public:
+	float x;
+	float y;
+
 	Player(float x, float y, Map* map);
 
 	void draw(sf::RenderWindow& window);
