@@ -9,6 +9,7 @@ class Camera
 public:
 	Camera(sf::RenderWindow& window);
 	void update(float x, float y);
+	sf::Vector2f getCenter();
 
 private:
 	sf::RenderWindow& window;

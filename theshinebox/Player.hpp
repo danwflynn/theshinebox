@@ -53,5 +53,5 @@ public:
 
 	void draw(sf::RenderWindow& window);
 	void update();
-	void draw_attributes(sf::RenderWindow& window);
+	void draw_attributes(sf::RenderWindow& window, float xPos, float yPos);
 };

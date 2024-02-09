@@ -17,13 +17,12 @@ int main() {
         }
 
         window.clear(sf::Color(9, 28, 59));
-        // Draw your SFML graphics here
         map.draw_backside(window);
         p1.draw(window);
         map.draw_frontside(window);
         p1.update();
         camera.update(p1.x, p1.y);
-        p1.draw_attributes(window);
+        p1.draw_attributes(window, camera.getCenter().x - 750, camera.getCenter().y - 530);
         window.display();
     }
 

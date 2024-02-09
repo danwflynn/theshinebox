@@ -24,3 +24,8 @@ void Camera::update(float x, float y)
     // Apply the view to the window
     window.setView(view);
 }
+
+sf::Vector2f Camera::getCenter()
+{
+    return this->view.getCenter();
+}
