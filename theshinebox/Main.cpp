@@ -23,6 +23,7 @@ int main() {
         map.draw_frontside(window);
         p1.update();
         camera.update(p1.x, p1.y);
+        p1.draw_attributes(window);
         window.display();
     }
 

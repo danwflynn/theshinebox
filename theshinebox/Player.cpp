@@ -188,3 +188,21 @@ void Player::update()
 
 	handleSprites();
 }
+
+void Player::draw_attributes(sf::RenderWindow& window)
+{
+	float healthRatio = 0.5;
+	float barWidth = 200 * healthRatio;
+
+	// Draw the background of the health bar
+	sf::RectangleShape background(sf::Vector2f(200, 20)); // Adjust these values as needed
+	background.setFillColor(sf::Color::Red);
+	background.setPosition(10, 10); // Adjust position as needed
+	window.draw(background);
+
+	// Draw the filled portion of the health bar
+	sf::RectangleShape health(sf::Vector2f(barWidth, 20)); // Adjust these values as needed
+	health.setFillColor(sf::Color::Green);
+	health.setPosition(10, 10); // Adjust position as needed
+	window.draw(health);
+}
