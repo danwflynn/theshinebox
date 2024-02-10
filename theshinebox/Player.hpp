@@ -11,6 +11,7 @@ constexpr float SHORT_JUMP_VELOCITY = -0.45f;
 constexpr float JUMP_VELOCITY = -0.65f;
 constexpr float HORIZONTAL_ACCELERATION = 0.001f;
 constexpr float HORIZONTAL_HITBOX_BUFFER = 4;
+constexpr float MAX_HEALTH = 100;
 
 constexpr unsigned char JUMP_TIMER_MAX = 180;
 constexpr unsigned short LOOPS_PER_ANIMATION_FRAME = 150;
@@ -23,6 +24,8 @@ class Player
 
 	float verticalSpeed;
 	float horizontalSpeed;
+	float health;
+	float prevVerticalSpeed;
 
 	unsigned char jumpDuration;
 	unsigned char prevJumpDur;
@@ -44,6 +47,7 @@ class Player
 	void stopMoving();
 	void jump();
 	void shortJump();
+	void takeFallDamage();
 
 public:
 	float x;

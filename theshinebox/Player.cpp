@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include <cstdlib>
+#include <algorithm>
 
 void Player::handleInput()
 {
@@ -134,6 +135,13 @@ void Player::shortJump()
 	jumpDuration = 0;
 }
 
+void Player::takeFallDamage()
+{
+	if (onGround && prevVerticalSpeed >= 1) {
+		health -= (25 * prevVerticalSpeed);
+	}
+}
+
 Player::Player(float x, float y, Map* map) :
 	crouching(0),
 	dead(0),
@@ -145,7 +153,9 @@ Player::Player(float x, float y, Map* map) :
 	jumpDuration(1),
 	prevJumpDur(0),
 	walkTimer(0),
-	map(map)
+	map(map),
+	health(100),
+	prevVerticalSpeed(0)
 {
 	texture.loadFromFile("msuit.png");
 	jumpTexture.loadFromFile("msuitjump.png");
@@ -167,6 +177,7 @@ void Player::draw(sf::RenderWindow& window)
 
 void Player::update() 
 {
+	prevVerticalSpeed = verticalSpeed;
 	onGround = y + PLAYER_HEIGHT / 2 > 999 || map->touchingGround(x - PLAYER_WIDTH / 2 + HORIZONTAL_HITBOX_BUFFER, x + PLAYER_WIDTH / 2 - HORIZONTAL_HITBOX_BUFFER, y + PLAYER_HEIGHT / 2, verticalSpeed);
 
 	if (onGround == 0 && !map->touchingCeiling(x - PLAYER_WIDTH / 2 + HORIZONTAL_HITBOX_BUFFER, x + PLAYER_WIDTH / 2 - HORIZONTAL_HITBOX_BUFFER, y - PLAYER_HEIGHT / 2, verticalSpeed))
@@ -178,6 +189,7 @@ void Player::update()
 		verticalSpeed = 0;
 	}
 
+	takeFallDamage();
 	handleInput();
 
 	if (map->touchingLeftWall(x + PLAYER_WIDTH / 2 - HORIZONTAL_HITBOX_BUFFER, y - PLAYER_HEIGHT / 2, y + PLAYER_HEIGHT / 2, horizontalSpeed)) horizontalSpeed = 0;
@@ -191,8 +203,8 @@ void Player::update()
 
 void Player::draw_attributes(sf::RenderWindow& window, float xPos, float yPos)
 {
-	float healthRatio = 0.5;
-	float barWidth = 200 * healthRatio;
+	float healthRatio = health / MAX_HEALTH;
+	float barWidth = std::max(200 * healthRatio, 0.f);
 
 	// Draw the background of the health bar
 	sf::RectangleShape background(sf::Vector2f(200, 20)); // Adjust these values as needed
