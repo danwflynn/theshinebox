@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-constexpr float PLATFORM_HEIGHT = 15;
+constexpr float PLATFORM_HEIGHT = 16;
 
 class Platform
 {

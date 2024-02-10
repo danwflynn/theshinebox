@@ -18,7 +18,7 @@ Platform::Platform(float xLeft, float xRight, float yTop) :
 {
 	sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(xRight - xLeft, PLATFORM_HEIGHT));
 	shape.setPosition(xLeft, yTop);
-	shape.setFillColor(sf::Color(255, 112, 212));
+	shape.setFillColor(sf::Color(176, 93, 65));
 	this->sprite = shape;
 }
 
