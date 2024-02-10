@@ -47,6 +47,7 @@ class Player
 	void stopMoving();
 	void jump();
 	void shortJump();
+	void damage(float amount);
 	void takeFallDamage();
 
 public:

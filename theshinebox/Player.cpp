@@ -1,6 +1,5 @@
 #include "Player.hpp"
 #include <cstdlib>
-#include <algorithm>
 
 void Player::handleInput()
 {
@@ -135,10 +134,16 @@ void Player::shortJump()
 	jumpDuration = 0;
 }
 
+void Player::damage(float amount)
+{
+	health -= amount;
+	if (health < 0) health = 0;
+}
+
 void Player::takeFallDamage()
 {
 	if (onGround && prevVerticalSpeed >= 1) {
-		health -= (25 * prevVerticalSpeed);
+		damage(25 * prevVerticalSpeed);
 	}
 }
 
@@ -204,7 +209,7 @@ void Player::update()
 void Player::draw_attributes(sf::RenderWindow& window, float xPos, float yPos)
 {
 	float healthRatio = health / MAX_HEALTH;
-	float barWidth = std::max(200 * healthRatio, 0.f);
+	float barWidth = 200 * healthRatio;
 
 	// Draw the background of the health bar
 	sf::RectangleShape background(sf::Vector2f(200, 20)); // Adjust these values as needed
